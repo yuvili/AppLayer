@@ -84,8 +84,8 @@ def proxy(proxy_address: tuple[str, int], server_adress: tuple[str, int]) -> Non
         proxy_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         # Prepare the proxy socket
-        proxy_socket.bind(server_adress)
-        proxy_socket.listen(1)
+        proxy_socket.bind(server_adress)  # Bind the socket to address.
+        proxy_socket.listen(1)  # Enable the server to accept connections.
         threads = []
         print(f"Listening on {proxy_address[0]}:{proxy_address[1]}")
 
@@ -93,7 +93,9 @@ def proxy(proxy_address: tuple[str, int], server_adress: tuple[str, int]) -> Non
             try:
                 # Establish connection with client.
                 
-                client_socket, client_address = proxy_socket.accept()
+                client_socket, client_address = proxy_socket.accept()  # Accept a connection - returns a new socket
+                # object usable to send and receive data on the connection,
+                # and the address bound to the socket on the other end of the connection.
 
                 # Create a new thread to handle the client request
                 thread = threading.Thread(target=client_handler, args=(
@@ -117,8 +119,8 @@ def client_handler(client_socket: socket.socket, client_address: tuple[str, int]
         print(f"{client_prefix} Connected established")
         while True:
             # Receive data from the client
-            
-            data = client_socket.recv(8192)
+            data = client_socket.recv(8192)  # data is a bytes object representing the data received.
+            # The maximum amount of data to be received at once is 8192 bytes.
             
             if not data:
                 break
@@ -153,8 +155,8 @@ def client_handler(client_socket: socket.socket, client_address: tuple[str, int]
 
                 # Send the response back to the client
                 client_socket.send(response)
-                client_socket.close()
-                break
+                client_socket.close()  # Mark the socket closed.
+                break  # Exit while loop
 
             except Exception as e:
                 print(f"Unexpected server error: {e}")
