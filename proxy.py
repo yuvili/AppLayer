@@ -84,7 +84,7 @@ def proxy(proxy_address: tuple[str, int], server_adress: tuple[str, int]) -> Non
         proxy_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         # Prepare the proxy socket
-        proxy_socket.bind(server_adress)  # Bind the socket to address.
+        proxy_socket.bind(proxy_address)  # Bind the socket to address.
         proxy_socket.listen(1)  # Enable the server to accept connections.
         threads = []
         print(f"Listening on {proxy_address[0]}:{proxy_address[1]}")
@@ -183,6 +183,7 @@ if __name__ == '__main__':
     proxy_host = args.proxy_host
     proxy_port = args.proxy_port
     server_host = args.server_host
-    server_port = args.server_port
+    server_port = 9999
 
     proxy((proxy_host, proxy_port), (server_host, server_port))
+

@@ -101,7 +101,7 @@ if __name__ == "__main__":
     #     6, div_b(mul_b(7, 8), 9)), div_b(10, 11))), 12), 13)  # (1)
 
     # (2) '(max(2, 3) + 3)' = 6
-    expr = add_b(max_f(2, 3), 3) # (2)
+    # expr = add_b(max_f(2, 3), 3) # (2)
 
     # (3) '3 + ((4 * 2) / ((1 - 5) ** (2 ** 3)))' = 3.0001220703125
     # expr = add_b(3, div_b(mul_b(4, 2), pow_b(sub_b(1, 5), pow_b(2, 3)))) # (3)
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     # expr = neg_u(neg_u(pow_b(add_b(1, add_b(2, 3)), neg_u(add_b(4, 5))))) # (5)
 
     # (6) 'max(2, (3 * 4), log(e), (6 * 7), (9 / 8))' = 42
-    # expr = max_f(2, mul_b(3, 4), log_f(e_c), mul_b(6, 7), div_b(9, 8)) # (6)
+    expr = max_f(2, mul_b(3, 4), log_f(e_c), mul_b(6, 7), div_b(9, 8)) # (6)
 
     # Change the following values according to your needs:
 
